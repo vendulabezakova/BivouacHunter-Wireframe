@@ -8,6 +8,7 @@ h1{color:#fff;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform
 .wrap{overflow:hidden;width:359px;height:680px;position:relative;}
 .slides{position:relative;width:359px;height:680px;}
 .sl{width:359px;height:680px;position:absolute;top:0;left:0;overflow:hidden;background:#fff;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.sl.active{opacity:1;pointer-events:auto;}
 /* bottom nav */
 .bnav{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:.5px solid #e0e0e0;display:flex;justify-content:space-around;align-items:center;padding:8px 0 16px;z-index:50;}
 .ni{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:#bbb;cursor:pointer;}
@@ -171,7 +172,7 @@ h1{color:#fff;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform
 .bsave-btn:hover{background:#333;}
 
 /* Uložené */
-.ul-sl{background:#f8f9fa;overflow-y:auto;padding-bottom:150px;}
+.ul-sl{background:#f8f9fa;overflow-y:auto;}
 .ul-hdr{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;background:#fff;border-bottom:.5px solid #eee;}
 .ul-title{font-size:17px;font-weight:700;color:#111;}
 .ul-item{background:#fff;border-bottom:.5px solid #eee;}

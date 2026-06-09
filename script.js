@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded',()=>{goTo(0);renderWxTimes();});
 function goTo(n){
   document.querySelectorAll('.sl').forEach((s,i)=>{
     s.style.opacity = i===n ? '1' : '0';
-    s.style.pointerEvents = i===n ? 'auto' : 'none';
+    s.classList.toggle('active', i===n);
   });
   cur=n;
   document.querySelectorAll('.d').forEach((d,i)=>d.classList.toggle('active',i===n));
