@@ -1,6 +1,9 @@
 let cur=0;
 let loggedIn=false;
-window.addEventListener('DOMContentLoaded',()=>{goTo(0);renderWxTimes();});
+function setVh(){document.documentElement.style.setProperty('--vh',window.innerHeight*0.01+'px');}
+setVh();
+window.addEventListener('resize',setVh);
+window.addEventListener('DOMContentLoaded',()=>{setVh();goTo(0);renderWxTimes();});
 function goTo(n){
   if(n>=2 && !loggedIn){goTo(0);return;}
   document.querySelectorAll('.sl').forEach((s,i)=>{
