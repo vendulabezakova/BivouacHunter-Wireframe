@@ -24,7 +24,7 @@ function openSOS(e){e.stopPropagation();document.getElementById('sosOverlay').cl
 function closeSOS(){document.getElementById('sosOverlay').classList.remove('open');document.getElementById('sosSheet').classList.remove('open');}
 
 const SP=[
-{c:'46.9421°N, 11.9834°E',tp:'(Bivak)',te:'Nadmořská výška: 2638 m<br>Sklon terénu: <span style="color:#4a9a2a;font-weight:600;">4° (mírný = vhodný)</span><br>Orientace svahu: JV<br>Vzdálenost od pěšiny: 320 m<br>Pramen: 480 m<br>Typ terénu: alpská louka',w:[['Teď','⛅','8°C','12 km/h od JJZ','0 mm'],['18:00','🌤','7°C','14 km/h od JJV','0 mm'],['21:00','☁️','4°C','8 km/h od VJV','0 mm'],['03:00','🌑','1°C','6 km/h od V','0 mm']],lg:'Bivakování povoleno. Zákaz ohně. <a class="ll">Nationalpark Hohe Tauern</a>',sklon:4,orient:'JV',pesina:320,pramen:480,pristresek:null,leg:'povoleno',vyska:2638},
+{c:'46.9421°N, 11.9834°E',tp:'(Bivak)',te:'Nadmořská výška: 2638 m<br>Sklon terénu: <span style="color:#4a9a2a;font-weight:600;">4° (mírný = vhodný)</span><br>Orientace svahu: JV<br>Vzdálenost od pěšiny: 320 m<br>Pramen: 1000 m<br>Přístřešek: 800 m<br>Typ terénu: alpská louka',w:[['Teď','⛅','8°C','12 km/h od JJZ','0 mm'],['18:00','🌤','7°C','14 km/h od JJV','0 mm'],['21:00','☁️','4°C','8 km/h od VJV','0 mm'],['03:00','🌑','1°C','6 km/h od V','0 mm']],lg:'Bivakování povoleno. Zákaz ohně. <a class="ll">Nationalpark Hohe Tauern</a>',sklon:4,orient:'JV',pesina:320,pramen:1000,pristresek:800,leg:'povoleno',vyska:2638},
 {c:'46.9318°N, 12.0041°E',tp:'(Bivak)',te:'Nadmořská výška: 2710 m<br>Sklon terénu: <span style="color:#8a8a00;font-weight:600;">6° (výrazný = nouzový)</span><br>Orientace svahu: SV<br>Vzdálenost od pěšiny: 80 m<br>Pramen: 1200 m<br>Typ terénu: travnatý hřeben',w:[['Teď','🌤','6°C','18 km/h od S','0 mm'],['18:00','⛅','5°C','20 km/h od SSZ','0 mm'],['21:00','🌧','3°C','15 km/h od Z','1 mm'],['03:00','🌧','1°C','10 km/h od Z','2 mm']],lg:'Bivakování povoleno max. 1 noc. Zákaz ohně. <a class="ll">Biotopo Alpi Aurine</a>',sklon:6,orient:'SV',pesina:80,pramen:1200,pristresek:900,leg:'max1noc',vyska:2710},
 {c:'46.9205°N, 12.0112°E',tp:'(Bivak)',te:'Nadmořská výška: 2540 m<br>Sklon terénu: <span style="color:#1a6b1a;font-weight:600;">2° (rovný = ideální)</span><br>Orientace svahu: J<br>Vzdálenost od pěšiny: 650 m<br>Pramen: 200 m<br>Typ terénu: chráněná kotlina, les smíšený',w:[['Teď','🌤','11°C','9 km/h od JJZ','0 mm'],['18:00','🌤','10°C','11 km/h od JJV','0 mm'],['21:00','⛅','7°C','7 km/h od VJV','0 mm'],['03:00','🌑','4°C','5 km/h od V','0 mm']],lg:'Bivakování povoleno. Zákaz ohně. <a class="ll">CHKO Alpi Aurine / Campo Tures</a>',sklon:2,orient:'J',pesina:650,pramen:200,pristresek:null,leg:'povoleno',vyska:2540},
 ];
@@ -82,7 +82,10 @@ function applyFilters(){
     if(pesina && s.pesina > pesina) show = false;
     if(pramen && s.pramen > pramen) show = false;
     if(pristresek && (s.pristresek === null || s.pristresek > pristresek)) show = false;
-    if(leg && s.leg !== leg) show = false;
+    if(leg){
+      if(leg === 'max1noc' && s.leg !== 'max1noc' && s.leg !== 'povoleno') show = false;
+      else if(leg !== 'max1noc' && s.leg !== leg) show = false;
+    }
     el.style.display = show ? 'block' : 'none';
   });
 }
