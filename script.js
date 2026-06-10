@@ -9,7 +9,6 @@ function goTo(n){
   document.querySelectorAll('.sl').forEach((s,i)=>{
     const active = i===n;
     s.style.opacity = active ? '1' : '0';
-    s.style.visibility = active ? 'visible' : 'hidden';
     s.classList.toggle('active', active);
   });
   cur=n;
