@@ -1,13 +1,19 @@
 let cur=0;
+let loggedIn=false;
 window.addEventListener('DOMContentLoaded',()=>{goTo(0);renderWxTimes();});
 function goTo(n){
+  if(n>=2 && !loggedIn){goTo(0);return;}
   document.querySelectorAll('.sl').forEach((s,i)=>{
-    s.style.opacity = i===n ? '1' : '0';
-    s.classList.toggle('active', i===n);
+    const active = i===n;
+    s.style.opacity = active ? '1' : '0';
+    s.style.visibility = active ? 'visible' : 'hidden';
+    s.classList.toggle('active', active);
   });
   cur=n;
   document.querySelectorAll('.d').forEach((d,i)=>d.classList.toggle('active',i===n));
 }
+function login(n){loggedIn=true;goTo(n);}
+function logout(){loggedIn=false;goTo(0);}
 function next(){if(cur<7)goTo(cur+1);}
 function prev(){if(cur>0)goTo(cur-1);}
 
